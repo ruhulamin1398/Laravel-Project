@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+use Illuminate\Support\Facades\Storage;
+Route::get('/a', function () {
+   if( Storage:delete('public/a.txt'))
+   {
+       return success ;
+   }
+   else {
+       
+    return failed;
+   }
+    
+});
