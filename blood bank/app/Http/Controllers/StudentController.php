@@ -13,11 +13,19 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $students=Student::paginate(10);
+     {
 
 
-        return view("welcome",compact("students"));
+    //     $students=Student::paginate(10);
+    //     return view("welcome",compact("students"));
+
+       $students = Student::all();
+       // dd($students);
+        return json_encode($students) ;
+
+
+
+
     }
 
     /**
@@ -55,14 +63,14 @@ class StudentController extends Controller
     // ]);
 
 
-         
+
 
         $student= new student;
 
         $student->problemName=$request->problemName;
         $student->onlineJudge=$request->onlineJudge;
         $student->link=$request->link;
-       
+
 
         $student->save();
 
@@ -101,8 +109,8 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id )
     {
-        
-         
+
+
 
 
         $student= Student::find($id);

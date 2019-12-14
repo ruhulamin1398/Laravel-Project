@@ -20,3 +20,4 @@ Route::delete('destroy/{id}' ,'StudentController@destroy')->name("destroy");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('yjujjj');
+
