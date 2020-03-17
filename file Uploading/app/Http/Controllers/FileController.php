@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\sms;
-use GuzzleHttp\Client;
+use App\file;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class SmsController extends Controller
+class FileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,8 @@ class SmsController extends Controller
      */
     public function index()
     {
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'http://httpbin.org',
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
-        ]);
-       return  $client->get('get'); 
-             
+        return file::all();
+       return Storage::download(file::find(1)->link,"hahaha.png");
 
     }
 
@@ -42,18 +36,22 @@ class SmsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
-        //
+       $link  =$request->file('file1')->storeAs('public/img',now().'.png');
+       $file = new file;
+       $file->link = $link;
+       $file->save();
+       return $file;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\sms  $sms
+     * @param  \App\file  $file
      * @return \Illuminate\Http\Response
      */
-    public function show(sms $sms)
+    public function show(file $file)
     {
         //
     }
@@ -61,10 +59,10 @@ class SmsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\sms  $sms
+     * @param  \App\file  $file
      * @return \Illuminate\Http\Response
      */
-    public function edit(sms $sms)
+    public function edit(file $file)
     {
         //
     }
@@ -73,10 +71,10 @@ class SmsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\sms  $sms
+     * @param  \App\file  $file
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sms $sms)
+    public function update(Request $request, file $file)
     {
         //
     }
@@ -84,10 +82,10 @@ class SmsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\sms  $sms
+     * @param  \App\file  $file
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sms $sms)
+    public function destroy(file $file)
     {
         //
     }
