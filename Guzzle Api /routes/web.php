@@ -17,3 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('sms','SmsController@index');
+Route::post('send-sms','SmsController@store')->name("send-sms");
+Route::get('data','SmsController@data');
