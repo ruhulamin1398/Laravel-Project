@@ -17,3 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('files','FileController');
+Route::get('users/export/', 'UserController@export');

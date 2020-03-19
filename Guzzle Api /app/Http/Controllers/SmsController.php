@@ -76,7 +76,7 @@ class SmsController extends Controller
         $data = array(
             "to" => $request->phone,
             "message" => $request->message,
-            "token" =>"7b503ed562e7e9b61ccbbfbabef68a68111"
+            "token" =>"1117b503ed562e7e9b61ccbbfbabef68a68111"
         );
         
         $ch = curl_init();
